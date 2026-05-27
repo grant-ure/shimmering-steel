@@ -1,6 +1,6 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { overflow-x: clip; }
-body { font-family: 'Roboto', sans-serif; color: #333; background: #fff; -webkit-text-size-adjust: 100%; }
+body { font-family: 'Roboto', sans-serif; color: #333; background: #fff; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 img { max-width: 100%; display: block; }
 nav { background: #0a2540; display: flex; align-items: center; justify-content: flex-end; padding: 0 clamp(1rem, 4vw, 2rem); height: 68px; position: sticky; top: 0; z-index: 100; }
 .nav-links { display: flex; gap: 0; }
@@ -33,16 +33,14 @@ nav { background: #0a2540; display: flex; align-items: center; justify-content: 
 .section-body.body-2col p,
 .section-body.body-2col ul,
 .section-body.body-2col h3 { break-inside: avoid; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
-.spec-list { list-style: none; padding: 0; }
-.spec-list li { font-family: 'Roboto', sans-serif; font-size: clamp(14px, 1.8vw, 16px); color: #555; padding: 6px 0; border-bottom: 0.5px solid #e0e0e0; line-height: 1.5; }
-.spec-list li:last-child { border-bottom: none; }
-.spec-list li::before { content: "›"; color: #4ab0e8; margin-right: 8px; font-weight: 500; }
-.upgrades-list { list-style: none; padding: 0; margin-top: 1rem; }
-.upgrades-list li { font-family: 'Roboto', sans-serif; font-size: clamp(14px, 1.8vw, 16px); color: #555; padding: 6px 0; border-bottom: 0.5px solid #e0e0e0; line-height: 1.5; }
-.upgrades-list li:last-child { border-bottom: none; }
-.upgrades-list li::before { content: "✓"; color: #4ab0e8; margin-right: 8px; }
-.subsection-title { font-family: 'Roboto', sans-serif; font-size: clamp(18px, 2.5vw, 22px); font-weight: 400; color: #0a2540; margin: 2rem 0 0.75rem; }
+/* Markdown-authored headings and lists inside a section body. Bullet lists
+   render with the house "›" marker and divider rules (the old .spec-list look). */
+.section-body h2, .section-body h3, .section-body h4 { font-family: 'Roboto', sans-serif; font-size: clamp(18px, 2.5vw, 22px); font-weight: 400; color: #0a2540; margin: 2rem 0 0.75rem; }
+.section-body h2:first-child, .section-body h3:first-child, .section-body h4:first-child { margin-top: 0; }
+.section-body ul { list-style: none; padding: 0; margin: 0.5rem 0 1.2rem; }
+.section-body ul li { font-family: 'Roboto', sans-serif; font-size: clamp(14px, 1.8vw, 16px); color: #555; padding: 6px 0; border-bottom: 0.5px solid #e0e0e0; line-height: 1.5; }
+.section-body ul li:last-child { border-bottom: none; }
+.section-body ul li::before { content: "›"; color: #4ab0e8; margin-right: 8px; font-weight: 500; }
 .cost-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: clamp(13px, 1.8vw, 16px); }
 .cost-table th { font-family: 'Roboto', sans-serif; background: #0a2540; color: #fff; padding: 12px 14px; text-align: left; font-weight: 500; }
 .cost-table td { font-family: 'Roboto', sans-serif; padding: 11px 14px; border-bottom: 0.5px solid #e0e0e0; color: #555; vertical-align: top; }

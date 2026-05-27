@@ -11,12 +11,9 @@
 
 <nav>
   <div class="nav-links" id="nav-links">
-    <a class="active" data-section="home" href="#home">Home</a>
-    <a data-section="boat" href="#boat">The Boat</a>
-    <a data-section="syndicate" href="#syndicate">The Syndicate</a>
-    <a data-section="costs" href="#costs">The Costs</a>
-    <a data-section="alternatives" href="#alternatives">Alternatives</a>
-    <a data-section="contact" href="#contact">Contact</a>
+    {% for section in collections.sections %}
+    <a {% if loop.first %}class="active" {% endif %}data-section="{{ section.data.slug }}" href="#{{ section.data.slug }}">{{ section.data.nav_label }}</a>
+    {% endfor %}
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -24,12 +21,9 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a class="active" data-section="home" href="#home">Home</a>
-  <a data-section="boat" href="#boat">The Boat</a>
-  <a data-section="syndicate" href="#syndicate">The Syndicate</a>
-  <a data-section="costs" href="#costs">The Costs</a>
-  <a data-section="alternatives" href="#alternatives">Alternatives</a>
-  <a data-section="contact" href="#contact">Contact</a>
+  {% for section in collections.sections %}
+  <a {% if loop.first %}class="active" {% endif %}data-section="{{ section.data.slug }}" href="#{{ section.data.slug }}">{{ section.data.nav_label }}</a>
+  {% endfor %}
 </div>
 
 <div class="hero">
@@ -37,7 +31,6 @@
   <div class="hero-subtitle">{{ site.hero_subtitle }}</div>
 </div>
 
-{# ---- CMS-managed sections (currently: Home) ---- #}
 {% for section in collections.sections %}
 <div class="content-section{% if loop.first %} active-section{% endif %}" id="section-{{ section.data.slug }}">
   <h2 class="section-title">{{ section.data.title }}</h2>
@@ -52,164 +45,10 @@
   <div class="section-body{% if section.data.layout_style == 'two-column' %} body-2col{% endif %}">
     {{ section.templateContent | safe }}
   </div>
+  {% if section.data.slug == 'costs' %}{% include "partials/cost-table.njk" %}{% endif %}
+  {% if section.data.slug == 'contact' %}{% include "partials/contact-form.njk" %}{% endif %}
 </div>
 {% endfor %}
-
-{# ---- Static sections (converted to CMS content in the next phase) ---- #}
-
-<!-- THE BOAT -->
-<div class="content-section" id="section-boat">
-  <h2 class="section-title">The Boat</h2>
-  <div class="section-rule"></div>
-  <div class="section-body">
-    <p>Shimmering Steel is well maintained and is fully equipped for cruising the Thames. There are two helm positions, one in the saloon and one on the raised aft deck. The aft deck has a fully fitted canopy which provides effective weather protection but is easily folded away in good weather.</p>
-    <p>There are four permanent berths — two singles in the forward cabin and a double in the aft cabin. The galley dinette and saloon settee provide an additional three berths if required.</p>
-    <p>Excellent soundproofing means that engine noise is minimal, and the large picture windows make the saloon and galley very bright and airy.</p>
-  </div>
-  <div class="two-col">
-    <div>
-      <h3 class="subsection-title">Accommodation &amp; galley</h3>
-      <ul class="spec-list">
-        <li>Forward cabin with 2 single berths</li>
-        <li>Galley with gas water heater, fridge, oven, 4 burner hob, microwave</li>
-        <li>Dinette which converts to double bed</li>
-        <li>Saloon with inside helm position</li>
-        <li>Large picture windows and curved settee/single berth</li>
-        <li>Aft cabin with double berth and wardrobe</li>
-        <li>Heads with wash basin and separate shower</li>
-        <li>Electric toilet to holding tank</li>
-      </ul>
-    </div>
-    <div>
-      <h3 class="subsection-title">Comfort &amp; entertainment</h3>
-      <ul class="spec-list">
-        <li>Diesel fired warm air central heating to all cabins</li>
-        <li>Flat screen TV and DVD player</li>
-        <li>Radio in saloon and aft cabin</li>
-      </ul>
-      <h3 class="subsection-title">Deck &amp; handling</h3>
-      <ul class="spec-list">
-        <li>Aft deck with helm seat, table and chairs</li>
-        <li>Full canopy on the aft deck</li>
-        <li>6 cylinder normally aspirated diesel engine</li>
-        <li>Upgraded soundproofing in engine bay</li>
-        <li>Bow thruster</li>
-        <li>Fenders, warps, anchor with manual windlass</li>
-      </ul>
-      <h3 class="subsection-title">Electrics</h3>
-      <ul class="spec-list">
-        <li>Separate domestic battery bank</li>
-        <li>Shore power and battery charger</li>
-        <li>Mains inverter</li>
-        <li>12v socket at inside helm position</li>
-      </ul>
-    </div>
-  </div>
-  <h3 class="subsection-title">Major upgrades</h3>
-  <ul class="upgrades-list">
-    <li>Replacement canopy for aft deck 2020</li>
-    <li>Upper helm seat reupholstered 2020</li>
-    <li>Larger replacement fridge fitted 2018</li>
-    <li>Renew anti-slip paint on all deck areas 2016</li>
-    <li>All new upholstery 2015</li>
-    <li>Refurbished bow thruster 2014</li>
-    <li>Partial rewire and upgraded electrical system 2013</li>
-    <li>Full canopy for aft deck 2011</li>
-    <li>Repaint hull and superstructure 2008</li>
-  </ul>
-  <div class="section-body" style="margin-top:1.5rem;">
-    <p>Regular maintenance means that problems are rare, but in the event of trouble the syndicate has a subscription with River Canal Rescue which provides a 24 hour breakdown service.</p>
-  </div>
-</div>
-
-<!-- THE SYNDICATE -->
-<div class="content-section" id="section-syndicate">
-  <h2 class="section-title">The Syndicate</h2>
-  <div class="section-rule"></div>
-  <div class="section-body">
-    <p>Each owner has title to a 12.5% share of Shimmering Steel and becomes a member of the management syndicate. Shimmering Steel was originally managed by a commercial boat share company, but has been managed privately by the eight owners since 2008. This works very well, and represents a significant cost saving by avoiding unnecessary fees of over £3000 each year.</p>
-    <p>Regular maintenance is contracted out to a marine engineer based near the marina. Other work is carried out either by the owners or other professionals as necessary. There is an AGM each November where the owners get together to discuss plans for the next year and to agree on any additional maintenance or upgrades.</p>
-    <p>There are eight shares, with each owner being entitled to four weeks use per year between March and October. Weeks are allocated on a rota system with the starting position being rotated each year, and each owner having one week in every eight. For instance the owner having the first week in this season would have weeks 1, 9, 17, 25 and next year would have weeks 2, 10, 18, 26.</p>
-    <p>The advantages of this system are that everyone knows years in advance when their weeks are, and over time every owner gets to have the use of each of the 32 weeks in the season. Owners are free to swap weeks by negotiation, generally at the AGM. For instance it is often possible to arrange to take two weeks together rather than having them all spaced out at seven week intervals.</p>
-    <p>Changeover days are Fridays, and owners are expected to leave the boat thoroughly cleaned inside and out. Most use a cleaning company based at the marina for this rather than do it themselves, but this is optional.</p>
-  </div>
-</div>
-
-<!-- THE COSTS -->
-<div class="content-section" id="section-costs">
-  <h2 class="section-title">The Costs</h2>
-  <div class="section-rule"></div>
-  <div class="section-body">
-    <p>Maintenance costs, marina fees, insurance costs and breakdown membership are all paid centrally by the syndicate treasurer. Each owner pays a regular monthly contribution, currently £150, which is generally sufficient to cover outgoings. If additional expenditure is required then an additional cash call may be made. Other than in exceptional circumstances this will be discussed and agreed at the AGM.</p>
-    <p>Owners are responsible for their own fuel costs, and any pump out and mooring fees they incur whilst using the boat. These are typically around £150 per week in total.</p>
-    <p>Share prices in Shimmering Steel tend to hold their value well, and owners can expect to see most of their investment back should they decide to sell their share. However with the nearest equivalent hire boats costing over £2000 per week in high season there's a significant saving to be made even if only one or two of the allocated weeks are actually used each season, and the syndicate membership tends to be very stable.</p>
-  </div>
-  <div class="table-wrap">
-    <table class="cost-table">
-      <thead>
-        <tr><th></th><th>Capital</th><th>Asset</th><th>4 weeks</th><th>2 weeks high</th><th>2 weeks low</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><a class="boat-name" href="http://www.hobbsofhenley.com/">Hobbs of Henley</a><span class="boat-model">Linssen Grand Sturdy 36.9</span></td><td>nil</td><td>nil</td><td>£9,000</td><td>£5,100</td><td>£3,900</td></tr>
-        <tr><td><a class="boat-name" href="http://www.cavershamboatservices.co.uk/">Caversham Boats</a><span class="boat-model">Caversham Emperor</span></td><td>nil</td><td>nil</td><td>£6,200</td><td>£3,625</td><td>£2,575</td></tr>
-        <tr><td><a class="boat-name" href="http://www.leboat.co.uk/">Le Boat</a><span class="boat-model">Caprice</span></td><td>nil</td><td>nil</td><td>£5,450</td><td>£3,475</td><td>£1,975</td></tr>
-        <tr><td><a class="boat-name" href="https://www.purelatitude.com/">Pure Latitude</a><span class="boat-model">Stevens 34</span></td><td>nil</td><td>nil</td><td>£7,200</td><td>£5,160</td><td>£4,200</td></tr>
-        <tr><td><span class="boat-name" style="color:#555; font-weight:400;">Own boat</span><span class="boat-model">&nbsp;</span></td><td>£50–250,000</td><td>100%</td><td>£10,000+</td><td>£10,000+</td><td>£10,000+</td></tr>
-        <tr><td><span class="boat-name" style="color:#555; font-weight:400;">Shimmering Steel</span><span class="boat-model">Stevens 1140</span></td><td>£12,500</td><td>12.5%</td><td>£1,500</td><td>£1,500</td><td>£1,500</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="section-body" style="margin-top:1rem;">
-    <p style="font-size:13px;">Prices correct as of February 2016. Four week cost is based on 1 week in each of April, June, August and October. Two week high season is based on two weeks at highest cost, two week low season is based on two weeks at lowest cost.</p>
-  </div>
-</div>
-
-<!-- ALTERNATIVES -->
-<div class="content-section" id="section-alternatives">
-  <h2 class="section-title">Alternatives</h2>
-  <div class="section-rule"></div>
-  <div class="section-body">
-    <p>If you want regular boating holidays on the Thames there are several options:</p>
-    <p>The simplest way is to hire a boat from one of the holiday companies based along the Thames such as <a href="http://www.cavershamboatservices.co.uk/">Caversham Boats</a> or <a href="http://www.leboat.co.uk/">Le Boat</a>. This is a great way to get a feel for things without making a big commitment. For something a bit more individual than a typical hire boat you could go to <a href="http://www.hobbsofhenley.com/">Hobbs of Henley</a> who have recently added a couple of Dutch steel cruisers to their fleet — these are a similar style to Shimmering Steel but are brand new and priced accordingly. Even with a more modest hire boat if you're spending a few weeks a year on the river the costs will mount up quickly, with just a couple of weeks in low season costing more than four weeks on Shimmering Steel.</p>
-    <p>For regular hirers another option could be to join a club which has a fleet of boats available for members to use in return for a fixed yearly payment. <a href="https://www.purelatitude.com/">Pure Latitude</a> mostly offers sailing boats at coastal locations but has a slightly smaller version of Shimmering Steel based at Windsor, and could be a good choice particularly if you are also interested in their other boats. It is a lot more expensive though, and you won't own any equity in the boats.</p>
-    <p>Many people aspire to own their own boat of course, which brings the obvious benefits of ultimate flexibility and unlimited use. On the downside you would need to meet all the purchase and running costs yourself, and make all the arrangements for any repairs and maintenance. In our experience it costs in excess of £10,000 a year to run and maintain a boat like Shimmering Steel.</p>
-    <p>Membership of the Shimmering Steel syndicate brings many of the benefits of boat ownership, at a much lower cost along with the support of an experienced and friendly team to make sure that your boating runs as smoothly as possible. The cost of a place in the syndicate includes a 12.5% share of the ownership of Shimmering Steel which can be sold if you decide to leave the syndicate in the future, and the low running costs mean that even if you only manage to use two weeks of your allocation in a year, it's still cheaper than the alternatives!</p>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div class="content-section" id="section-contact">
-  <h2 class="section-title">Contact</h2>
-  <div class="section-rule"></div>
-  <div class="section-body">
-    <p>If you are interested in joining the Shimmering Steel syndicate or would like to be kept informed of any future vacancies, please enter your details below.</p>
-  </div>
-  <div class="contact-form">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="first-name">First Name *</label>
-        <input type="text" id="first-name" placeholder="First name">
-        <span class="form-error" id="err-first">Please enter your first name.</span>
-      </div>
-      <div class="form-group">
-        <label for="last-name">Last Name *</label>
-        <input type="text" id="last-name" placeholder="Last name">
-        <span class="form-error" id="err-last">Please enter your last name.</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" placeholder="your@email.com">
-      <span class="form-error" id="err-email">Please enter a valid email address.</span>
-    </div>
-    <div class="form-group">
-      <label for="query">Your Query *</label>
-      <textarea id="query" placeholder="Please let us know the nature of your query…"></textarea>
-      <span class="form-error" id="err-query">Please enter your query.</span>
-    </div>
-    <button class="submit-btn" onclick="submitForm()">Submit</button>
-  </div>
-</div>
 
 <footer>{{ site.footer | safe }}</footer>
 

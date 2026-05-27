@@ -1,0 +1,26 @@
+{# Static contact form — wired to validation/mailto in src/js/main.js. #}
+<div class="contact-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="first-name">First Name *</label>
+      <input type="text" id="first-name" placeholder="First name">
+      <span class="form-error" id="err-first">Please enter your first name.</span>
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name *</label>
+      <input type="text" id="last-name" placeholder="Last name">
+      <span class="form-error" id="err-last">Please enter your last name.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" placeholder="your@email.com">
+    <span class="form-error" id="err-email">Please enter a valid email address.</span>
+  </div>
+  <div class="form-group">
+    <label for="query">Your Query *</label>
+    <textarea id="query" placeholder="Please let us know the nature of your query…"></textarea>
+    <span class="form-error" id="err-query">Please enter your query.</span>
+  </div>
+  <button class="submit-btn" onclick="submitForm()">Submit</button>
+</div>

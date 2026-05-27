@@ -6,7 +6,7 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
-# Editors see one entry per page section. More sections are added in phase 2.
+# Editors see one entry per page section.
 collections:
   - name: "sections"
     label: "Page Sections"
@@ -34,3 +34,97 @@ collections:
             fields:
               - { label: "Image", name: "image", widget: "image" }
           - { label: "Body text", name: "body", widget: "markdown" }
+
+      - name: "boat"
+        label: "The Boat"
+        file: "src/content/boat.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 2 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "two-column"
+          - label: "Body text"
+            name: "body"
+            widget: "markdown"
+            hint: "Use ### for sub-headings (e.g. ### Electrics) and bullet lists for specs."
+
+      - name: "syndicate"
+        label: "The Syndicate"
+        file: "src/content/syndicate.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 3 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "single-column"
+          - { label: "Body text", name: "body", widget: "markdown" }
+
+      - name: "costs"
+        label: "The Costs"
+        file: "src/content/costs.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 4 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "single-column"
+          - label: "Body text"
+            name: "body"
+            widget: "markdown"
+            hint: "The comparison table below this text is maintained in code, not here."
+
+      - name: "alternatives"
+        label: "Alternatives"
+        file: "src/content/alternatives.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 5 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "single-column"
+          - { label: "Body text", name: "body", widget: "markdown" }
+
+      - name: "contact"
+        label: "Contact"
+        file: "src/content/contact.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 6 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "single-column"
+          - label: "Body text"
+            name: "body"
+            widget: "markdown"
+            hint: "The enquiry form below this text is maintained in code, not here."
