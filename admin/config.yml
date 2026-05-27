@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are committed, and the URL path they resolve to.
+media_folder: "images"
+public_folder: "/images"
+
+# Editors see one entry per page section. More sections are added in phase 2.
+collections:
+  - name: "sections"
+    label: "Page Sections"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "src/content/home.md"
+        fields:
+          - { label: "Section title", name: "title", widget: "string" }
+          - { label: "Menu label", name: "nav_label", widget: "string" }
+          - { label: "URL key (do not change)", name: "slug", widget: "hidden" }
+          - { label: "Order in menu", name: "order", widget: "number", value_type: "int", default: 1 }
+          - label: "Layout"
+            name: "layout_style"
+            widget: "select"
+            options:
+              - { label: "Single column", value: "single-column" }
+              - { label: "Two columns", value: "two-column" }
+            default: "single-column"
+          - label: "Gallery images"
+            name: "gallery"
+            widget: "list"
+            label_singular: "Image"
+            summary: "{{fields.image}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+          - { label: "Body text", name: "body", widget: "markdown" }
