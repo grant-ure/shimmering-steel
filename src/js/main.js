@@ -72,14 +72,23 @@ document.addEventListener("click", (e) => {
   }
 });
 
-function submitForm() {
-  const firstName = document.getElementById("first-name");
-  const lastName = document.getElementById("last-name");
-  const email = document.getElementById("email");
-  const query = document.getElementById("query");
+// Contact form: validate client-side, then submit via AJAX to Netlify Forms.
+// Recipient email is configured in the Netlify dashboard (Forms -> contact ->
+// Settings & usage -> Form notifications), not in code.
+const contactForm = document.querySelector('form[name="contact"]');
+if (contactForm) {
+  contactForm.addEventListener("submit", handleContactSubmit);
+}
+
+function handleContactSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const firstName = form.querySelector("#first-name");
+  const lastName = form.querySelector("#last-name");
+  const email = form.querySelector("#email");
+  const query = form.querySelector("#query");
 
   let valid = true;
-
   function validate(field, errorId, condition) {
     const err = document.getElementById(errorId);
     if (condition) {
@@ -104,14 +113,27 @@ function submitForm() {
 
   if (!valid) return;
 
-  const subject = encodeURIComponent("Shimmering Steel Query");
-  const body = encodeURIComponent(
-    "First Name: " + firstName.value.trim() + "\n" +
-      "Last Name: " + lastName.value.trim() + "\n" +
-      "Email: " + email.value.trim() + "\n\n" +
-      "Query:\n" + query.value.trim()
-  );
-
-  window.location.href =
-    "mailto:info@shimmeringsteel.co.uk?subject=" + subject + "&body=" + body;
+  const body = new URLSearchParams(new FormData(form)).toString();
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  })
+    .then((response) => {
+      if (response.ok) {
+        form
+          .querySelectorAll("input, textarea, button")
+          .forEach((el) => (el.disabled = true));
+        document.getElementById("form-success").classList.add("visible");
+      } else {
+        alert(
+          "Sorry, something went wrong sending your enquiry. Please try again later."
+        );
+      }
+    })
+    .catch(() =>
+      alert(
+        "Sorry, something went wrong sending your enquiry. Please try again later."
+      )
+    );
 }

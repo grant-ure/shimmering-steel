@@ -1,26 +1,32 @@
-{# Static contact form — wired to validation/mailto in src/js/main.js. #}
-<div class="contact-form">
+{# Contact form submitted to Netlify Forms via AJAX (see main.js).
+   The recipient email is configured in the Netlify dashboard:
+   Site -> Forms -> contact -> Settings & usage -> Form notifications. #}
+<form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact">
+  <p hidden><label>Leave this field empty if you're human: <input name="bot-field"></label></p>
+
   <div class="form-row">
     <div class="form-group">
       <label for="first-name">First Name *</label>
-      <input type="text" id="first-name" placeholder="First name">
+      <input type="text" id="first-name" name="first-name" placeholder="First name">
       <span class="form-error" id="err-first">Please enter your first name.</span>
     </div>
     <div class="form-group">
       <label for="last-name">Last Name *</label>
-      <input type="text" id="last-name" placeholder="Last name">
+      <input type="text" id="last-name" name="last-name" placeholder="Last name">
       <span class="form-error" id="err-last">Please enter your last name.</span>
     </div>
   </div>
   <div class="form-group">
     <label for="email">Email Address *</label>
-    <input type="email" id="email" placeholder="your@email.com">
+    <input type="email" id="email" name="email" placeholder="your@email.com">
     <span class="form-error" id="err-email">Please enter a valid email address.</span>
   </div>
   <div class="form-group">
     <label for="query">Your Query *</label>
-    <textarea id="query" placeholder="Please let us know the nature of your query…"></textarea>
+    <textarea id="query" name="query" placeholder="Please let us know the nature of your query…"></textarea>
     <span class="form-error" id="err-query">Please enter your query.</span>
   </div>
-  <button class="submit-btn" onclick="submitForm()">Submit</button>
-</div>
+  <button type="submit" class="submit-btn">Submit</button>
+  <p class="form-success" id="form-success">Thanks — your enquiry has been sent. We'll be in touch.</p>
+</form>
