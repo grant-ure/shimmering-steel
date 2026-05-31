@@ -83,8 +83,7 @@ if (contactForm) {
 function handleContactSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const firstName = form.querySelector("#first-name");
-  const lastName = form.querySelector("#last-name");
+  const name = form.querySelector("#name");
   const email = form.querySelector("#email");
   const query = form.querySelector("#query");
 
@@ -101,8 +100,7 @@ function handleContactSubmit(event) {
     }
   }
 
-  validate(firstName, "err-first", !firstName.value.trim());
-  validate(lastName, "err-last", !lastName.value.trim());
+  validate(name, "err-name", !name.value.trim());
   validate(
     email,
     "err-email",
@@ -110,6 +108,7 @@ function handleContactSubmit(event) {
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())
   );
   validate(query, "err-query", !query.value.trim());
+  // contact-number is optional — collected by FormData but not validated.
 
   if (!valid) return;
 
