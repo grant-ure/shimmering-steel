@@ -14,9 +14,6 @@ gallery:
   - image: /images/7.png
   - image: /images/8.png
   - image: /images/9.png
-  - image: /images/ets2_20240613_001220_00.png
-  - image: /images/ets2_20260325_230718_00.png
-  - image: /images/ets2_20260329_233855_00.png
 ---
 Shimmering Steel is a privately owned Stevens 1140 cruiser, managed by the owners as a boat share syndicate on the River Thames.
 
